@@ -38,14 +38,14 @@ By completing these tasks, you will learn:
    ├── app/
    │   ├── main.py                  ✅ Complete
    │   └── client.py                ✅ Complete
-   ├── 1-task-models.py             🚧 TODO
-   ├── 2-task-n.py                  🚧 TODO
-   ├── 3-task-temperature.py        🚧 TODO
-   ├── 4-task-seed.py               🚧 TODO
-   ├── 5-task-max_tokens.py         🚧 TODO
-   ├── 6-task-frequency_penalty.py  🚧 TODO
-   ├── 7-task-presence_penalty.py   🚧 TODO
-   └── 8-task-stop.py               🚧 TODO
+   ├── 1-task-models.py             ✅ Complete
+   ├── 2-task-n.py                  ✅ Complete
+   ├── 3-task-temperature.py        ✅ Complete
+   ├── 4-task-seed.py               ✅ Complete
+   ├── 5-task-max_tokens.py         ✅ Complete
+   ├── 6-task-frequency_penalty.py  ✅ Complete
+   ├── 7-task-presence_penalty.py   ✅ Complete
+   └── 8-task-stop.py               ✅ Complete
    ```
    
 ## Available models:

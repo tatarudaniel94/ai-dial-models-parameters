@@ -1,21 +1,27 @@
 from task.app.main import run
 
-# HINT: All available models you can find here: https://ai-proxy.lab.epam.com/openai/models
-
-# TODO:
-#  Try different models (`deployment_name`) with such user request:
-#  User massage: What LLMs can do?
-
 # Models to try:
-# - gpt-4o
-# - claude-3-7-sonnet@20250219
-# - gemini-2.5-pro
+MODELS = {
+    '1': 'gpt-4o',
+    '2': 'claude-3-7-sonnet@20250219',
+    '3': 'gemini-2.5-pro',
+}
+
+print("Select a model:")
+for key, model in MODELS.items():
+    print(f"  {key}. {model}")
+
+choice = input("\nEnter your choice (1-3): ").strip()
+
+if choice not in MODELS:
+    print("Invalid choice. Defaulting to gpt-4o")
+    choice = '1'
+
+selected_model = MODELS[choice]
+print(f"\n✓ Using model: {selected_model}\n")
 
 run(
-    deployment_name='INSERT_DEPLOYMENT_NAME',
-    print_request=False, # Switch to False if you do not want to see the request in console
-    print_only_content=False, # Switch to True if you want to see only content from response
+    deployment_name=selected_model,
+    print_request=True,
+    print_only_content=False,
 )
-
-# The main goal of this task is to explore the functional capabilities of DIAL to be able to work with different
-# LLMs through unified API

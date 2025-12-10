@@ -1,21 +1,41 @@
 from task.app.main import run
 
-# TODO:
-#  Try the `n` parameter with different models (`deployment_name`). With the parameter `n`, we can configure how many
-#       chat completion choices to generate for each input message
-#  User massage: Why is the snow white?
-
 # Models to try:
-# - gpt-4o
-# - claude-3-7-sonnet@20250219
-# - gemini-2.5-pro
+MODELS = {
+    '1': 'gpt-4o',
+    '2': 'claude-3-7-sonnet@20250219',
+    '3': 'gemini-2.5-pro',
+}
+
+print("Select a model:")
+for key, model in MODELS.items():
+    print(f"  {key}. {model}")
+
+choice = input("\nEnter your choice (1-3): ").strip()
+
+if choice not in MODELS:
+    print("Invalid choice. Defaulting to gpt-4o")
+    choice = '1'
+
+selected_model = MODELS[choice]
+
+# Get n value from user
+while True:
+    n_input = input("\nEnter number of choices to generate (1-5): ").strip()
+    try:
+        n_value = int(n_input)
+        if 1 <= n_value <= 5:
+            break
+        print("Please enter a number between 1 and 5.")
+    except ValueError:
+        print("Invalid input. Please enter a number between 1 and 5.")
+
+print(f"\n Using model: {selected_model}")
+print(f" Generating {n_value} choice(s)\n")
 
 run(
-    # TODO:
-    #  1. Provide `deployment_name` with model from the list above👆
-    #  2. Use `n` parameter with value in range from 1 to 5!
+    deployment_name=selected_model,
+    n=n_value,
+    print_request=True,
+    print_only_content=False,
 )
-
-# Pay attention to the number of choices in the response!
-# If you have worked with ChatGPT, you have probably seen responses where ChatGPT offers you a choice between two
-# responses to select which one you prefer. This is done with the `n` parameter.

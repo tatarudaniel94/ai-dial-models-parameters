@@ -1,20 +1,29 @@
 from task.app.main import run
 
-# TODO:
-#  Try `presence_penalty` parameter.
-#  Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's
-#  likelihood to talk about new topics. Higher values == more topic diversity.
-#       Range: -2.0 to 2.0
-#       Default: 0.0
-#  User massage: What is an entropy in LLM's responses?
+# The `presence_penalty` parameter encourages talking about new topics.
+# Range: -2.0 to 2.0, Default: 0.0
+# Note: For Anthropic and Gemini this parameter will be ignored!
+
+print("Presence penalty controls topic diversity:")
+print("-2.0 = stays focused on same concepts")
+print("0.0 = neutral (default)")
+print("2.0 = explores new/related topics")
+
+while True:
+    penalty_input = input("\nEnter presence_penalty (-2.0 to 2.0): ").strip()
+    try:
+        presence_penalty = float(penalty_input)
+        if -2.0 <= presence_penalty <= 2.0:
+            break
+        print("Please enter a value between -2.0 and 2.0")
+    except ValueError:
+        print("Invalid input. Please enter a number between -2.0 and 2.0")
+
+print(f"\n Presence penalty: {presence_penalty}\n")
 
 run(
     deployment_name='gpt-4o',
+    presence_penalty=presence_penalty,
+    print_request=True,
     print_only_content=True,
-    # TODO:
-    #  Use `presence_penalty` parameter with different range (-2.0 to 2.0)
 )
-
-# In the final result, we can see that the higher `presence_penalty` (2.0) the more LLM is trying to add topics that
-# somehow related to the main topic.
-# For Anthropic and Gemini this parameter will be ignored
